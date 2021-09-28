@@ -9,6 +9,7 @@ export const styles = {
     maxHeight: "300px",
   },
   filmImage: {
+    cursor: "pointer",
     flex: "1 0 130px",
     height: 200,
     width: 130,
@@ -87,6 +88,7 @@ export const styles = {
     },
   },
   filmName: {
+    cursor: "pointer",
     fontSize: 21,
     "@media (min-width: 375px)": {
       fontSize: 23,
