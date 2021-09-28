@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/moovy/static/css/main.b83c29bc.chunk.css",
+    "main.js": "/moovy/static/js/main.ac840ad2.chunk.js",
+    "main.js.map": "/moovy/static/js/main.ac840ad2.chunk.js.map",
+    "runtime-main.js": "/moovy/static/js/runtime-main.2951b3a5.js",
+    "runtime-main.js.map": "/moovy/static/js/runtime-main.2951b3a5.js.map",
+    "static/js/2.b4845694.chunk.js": "/moovy/static/js/2.b4845694.chunk.js",
+    "static/js/2.b4845694.chunk.js.map": "/moovy/static/js/2.b4845694.chunk.js.map",
+    "index.html": "/moovy/index.html",
+    "static/css/main.b83c29bc.chunk.css.map": "/moovy/static/css/main.b83c29bc.chunk.css.map",
+    "static/js/2.b4845694.chunk.js.LICENSE.txt": "/moovy/static/js/2.b4845694.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2951b3a5.js",
+    "static/js/2.b4845694.chunk.js",
+    "static/css/main.b83c29bc.chunk.css",
+    "static/js/main.ac840ad2.chunk.js"
+  ]
+}
