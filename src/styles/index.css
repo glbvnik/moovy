@@ -1,0 +1,22 @@
+* {
+  border: none;
+  box-sizing: border-box;
+  color: #112031 !important;
+  font-family: sans-serif;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none !important;
+  -webkit-appearance: none;
+}
+
+html {
+  height: 100%;
+}
+
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
