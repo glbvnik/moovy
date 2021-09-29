@@ -11,4 +11,11 @@ export const styles = {
       padding: 0,
     },
   },
+  loader: {
+    marginTop: "10px",
+    "@media (min-width: 500px)": {
+      marginTop: "-15px",
+      marginBottom: "30px",
+    },
+  },
 };

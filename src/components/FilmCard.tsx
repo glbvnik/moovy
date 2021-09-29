@@ -21,8 +21,8 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
 
   const { setFilmRating, fetchFilm } = useActions();
 
-  const isMedium = useMediaQuery("(min-width:375px)");
-  const isLarge = useMediaQuery("(min-width:1200px)");
+  const isMedium = useMediaQuery("(min-width: 375px)");
+  const isLarge = useMediaQuery("(min-width: 1200px)");
 
   const defineRatingSize = () => {
     if (isMedium && !isLarge) {

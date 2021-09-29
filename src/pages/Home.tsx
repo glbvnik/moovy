@@ -8,7 +8,7 @@ import ListStates from "../components/ListStates";
 import Loader from "../components/Loader";
 
 const Home: FC = () => {
-  const { films, totalResults, ratedFilms, badRequest, loader } =
+  const { films, totalResults, ratedFilms, badRequest, film, loader } =
     useTypedSelector((state) => state.film);
   const { title, year, page } = useTypedSelector((state) => state.search);
 
@@ -42,7 +42,7 @@ const Home: FC = () => {
       return <Loader />;
     }
 
-    return <FilmList films={films} />;
+    return <FilmList films={films} film={film} loader={loader} />;
   };
 
   useEffect(() => {
@@ -53,6 +53,7 @@ const Home: FC = () => {
   return (
     <>
       <Search handleSearch={handleSearch} />
+
       {returnList()}
       {totalResults > 10 && (
         <ListPagination

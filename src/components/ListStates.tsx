@@ -14,7 +14,7 @@ const ListStates: FC<ListStatesProps> = ({ badRequest }) => {
       container
       alignItems="center"
       justifyContent="center"
-      sx={{ height: "50%" }}
+      sx={{ flexGrow: 1 }}
     >
       <Box display="flex" flexDirection="column">
         {badRequest ? (

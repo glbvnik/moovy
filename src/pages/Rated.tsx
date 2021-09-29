@@ -7,9 +7,8 @@ import MySelect from "../components/MySelect";
 import FilmList from "../components/FilmList";
 
 const Rated: FC = () => {
-  const { ratedFilms, genres, lastRatedFilm, films } = useTypedSelector(
-    (state) => state.film
-  );
+  const { ratedFilms, genres, lastRatedFilm, films, film, loader } =
+    useTypedSelector((state) => state.film);
 
   const { setCurrentGenres, setRatedFilms, setLastRatedFilm, setFilms } =
     useActions();
@@ -71,7 +70,7 @@ const Rated: FC = () => {
   return (
     <>
       <MySelect genres={genres} handleSelectChange={handleSelectChange} />
-      <FilmList films={ratedFilms} />
+      <FilmList films={ratedFilms} film={film} loader={loader} />
     </>
   );
 };

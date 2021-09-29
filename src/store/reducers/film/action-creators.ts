@@ -62,6 +62,7 @@ export const filmActionCreators = {
           )
         );
         dispatch(filmActionCreators.setTotalResults(+totalResults as number));
+        dispatch(filmActionCreators.setLoader(true));
       } catch (e) {
         dispatch(filmActionCreators.setFilms([]));
         dispatch(filmActionCreators.setTotalResults(0));
@@ -73,6 +74,8 @@ export const filmActionCreators = {
     (imdbId: string, ratedFilms: IСoncreteFilm[]) =>
     async (dispatch: AppDispatch) => {
       try {
+        dispatch(filmActionCreators.setLoader(false));
+
         const film = await FilmService.fetchOneFilm(imdbId);
 
         const ratedFilm = FilmService.findFilm(ratedFilms, imdbId);
@@ -84,10 +87,8 @@ export const filmActionCreators = {
         }
 
         dispatch(filmActionCreators.setFilm(film));
-
-        dispatch(filmActionCreators.setLoader(false));
       } catch (e) {
-        console.log(e);
+        dispatch(filmActionCreators.setLoader(true));
       }
     },
   // this method sets films and ratedFilms arrays

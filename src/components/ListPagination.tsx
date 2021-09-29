@@ -13,9 +13,9 @@ const ListPagination: FC<PaginationProps> = ({
   totalResults,
   handlePaginationClick,
 }) => {
-  const isSmall = useMediaQuery("(min-width:375px)");
-  const isMedium = useMediaQuery("(min-width:600px)");
-  const isLarge = useMediaQuery("(min-width:1000px)");
+  const isSmall = useMediaQuery("(min-width: 375px)");
+  const isMedium = useMediaQuery("(min-width: 600px)");
+  const isLarge = useMediaQuery("(min-width: 1000px)");
 
   const definePaginationSize = () => {
     if (isSmall && !isMedium) {
