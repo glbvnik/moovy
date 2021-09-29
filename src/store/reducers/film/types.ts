@@ -5,6 +5,7 @@ export interface FilmState {
   totalResults: number;
   film: IСoncreteFilm;
   ratedFilms: IСoncreteFilm[];
+  lastRatedFilm: IСoncreteFilm;
   genres: string[];
   badRequest: boolean;
   loader: boolean;
@@ -15,6 +16,7 @@ export enum FilmActionEnum {
   SET_TOTAL_RESULTS = "SET_TOTAL_RESULTS",
   SET_CONCRETE_FILM = "SET_CONCRETE_FILM",
   SET_RATED_FILMS = "SET_RATED_FILMS",
+  SET_LAST_RATED_FILM = "SET_LAST_RATED_FILM",
   SET_GENRES = "SET_GENRES",
   SET_BAD_REQUEST = "SET_BAD_REQUEST",
   SET_LOADER = "SET_LOADER",
@@ -40,6 +42,11 @@ export interface SetRatedFilmsAction {
   payload: IСoncreteFilm[];
 }
 
+export interface SetLastRatedFilmAction {
+  type: FilmActionEnum.SET_LAST_RATED_FILM;
+  payload: IСoncreteFilm;
+}
+
 export interface SetGenresAction {
   type: FilmActionEnum.SET_GENRES;
   payload: string[];
@@ -60,6 +67,7 @@ export type FilmAction =
   | SetTotalResultsAction
   | SetConcreteFilmAction
   | SetRatedFilmsAction
+  | SetLastRatedFilmAction
   | SetGenresAction
   | SetBadRequestAction
   | SetLoaderAction;

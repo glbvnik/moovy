@@ -4,6 +4,7 @@ import {
   SetConcreteFilmAction,
   SetFilmsAction,
   SetGenresAction,
+  SetLastRatedFilmAction,
   SetLoaderAction,
   SetRatedFilmsAction,
   SetTotalResultsAction,
@@ -27,6 +28,10 @@ export const filmActionCreators = {
   }),
   setRatedFilms: (payload: IСoncreteFilm[]): SetRatedFilmsAction => ({
     type: FilmActionEnum.SET_RATED_FILMS,
+    payload,
+  }),
+  setLastRatedFilm: (payload: IСoncreteFilm): SetLastRatedFilmAction => ({
+    type: FilmActionEnum.SET_LAST_RATED_FILM,
     payload,
   }),
   setGenres: (payload: string[]): SetGenresAction => ({
@@ -99,11 +104,10 @@ export const filmActionCreators = {
       const foundRatedFilm = FilmService.findFilm(ratedFilms, imdbId);
 
       if (foundRatedFilm) {
+        foundRatedFilm.rating = rating;
         if (!rating) {
           newRatedFilms = FilmService.deleteRatedFilm(ratedFilms, imdbId);
         } else {
-          foundRatedFilm.rating = rating;
-
           newRatedFilms = FilmService.updateRatedFilms(
             ratedFilms,
             imdbId,
@@ -115,6 +119,11 @@ export const filmActionCreators = {
           filmActionCreators.setFilms(
             FilmService.syncFilms(films, newRatedFilms)
           )
+        );
+
+        // set lastFilm state to adopt filtering
+        dispatch(
+          filmActionCreators.setLastRatedFilm(foundRatedFilm as IСoncreteFilm)
         );
       } else {
         const foundFilm = FilmService.findFilm(films, imdbId);

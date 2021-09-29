@@ -6,6 +6,7 @@ const initialState: FilmState = {
   totalResults: 0,
   film: {} as IСoncreteFilm,
   ratedFilms: [],
+  lastRatedFilm: {} as IСoncreteFilm,
   genres: [],
   badRequest: false,
   loader: true,
@@ -27,6 +28,9 @@ export default function FilmReducer(
 
     case FilmActionEnum.SET_RATED_FILMS:
       return { ...state, ratedFilms: action.payload };
+
+    case FilmActionEnum.SET_LAST_RATED_FILM:
+      return { ...state, lastRatedFilm: action.payload };
 
     case FilmActionEnum.SET_GENRES:
       return { ...state, genres: action.payload };
