@@ -49,7 +49,7 @@ export const styles = {
     padding: "12px 12px 0 12px",
     "& .MuiTypography-root": {
       overflow: "auto",
-      maxHeight: 110,
+      maxHeight: 112,
       "@media (min-width: 1200px)": {
         maxHeight: 140,
       },
