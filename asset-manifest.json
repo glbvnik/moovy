@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/moovy/static/css/main.b83c29bc.chunk.css",
-    "main.js": "/moovy/static/js/main.3627fe4e.chunk.js",
-    "main.js.map": "/moovy/static/js/main.3627fe4e.chunk.js.map",
+    "main.js": "/moovy/static/js/main.bfb3f47d.chunk.js",
+    "main.js.map": "/moovy/static/js/main.bfb3f47d.chunk.js.map",
     "runtime-main.js": "/moovy/static/js/runtime-main.2951b3a5.js",
     "runtime-main.js.map": "/moovy/static/js/runtime-main.2951b3a5.js.map",
     "static/js/2.b263c6e5.chunk.js": "/moovy/static/js/2.b263c6e5.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.2951b3a5.js",
     "static/js/2.b263c6e5.chunk.js",
     "static/css/main.b83c29bc.chunk.css",
-    "static/js/main.3627fe4e.chunk.js"
+    "static/js/main.bfb3f47d.chunk.js"
   ]
 }
