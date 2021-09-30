@@ -29,7 +29,7 @@ const MySelect: FC<MySelectProps> = ({ genre, genres, handleSelectChange }) => {
             value={genre}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>All</em>
             </MenuItem>
             {genres.map((g) => (
               <MenuItem key={g} value={g}>

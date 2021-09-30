@@ -32,6 +32,7 @@ const Rated: FC = () => {
 
         if (ratedFilms.length === 0) {
           setGenre("");
+          setRatedFilms(newFilms);
         }
       } else {
         newFilms = memorizedFilms.current.map((f) => {
