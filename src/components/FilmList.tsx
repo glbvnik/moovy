@@ -11,9 +11,10 @@ interface FilmListProps {
   films: IFilm[] | IСoncreteFilm[];
   film: IСoncreteFilm;
   loader: boolean;
+  sx?: object;
 }
 
-const FilmList: FC<FilmListProps> = ({ films, film, loader }) => {
+const FilmList: FC<FilmListProps> = ({ films, film, loader, sx }) => {
   const isMedium = useMediaQuery("(min-width:900px)");
   const isLarge = useMediaQuery("(min-width:1800px)");
 
@@ -26,7 +27,12 @@ const FilmList: FC<FilmListProps> = ({ films, film, loader }) => {
           <LinearProgress color="success" />
         </Box>
       )}
-      <Grid className={classes.wrapper} container justifyContent="center">
+      <Grid
+        className={classes.wrapper}
+        container
+        justifyContent="center"
+        sx={sx}
+      >
         <Grid
           className={isMedium ? classes.maxWidth : undefined}
           container

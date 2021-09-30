@@ -165,7 +165,7 @@ export const filmActionCreators = {
     (ratedFilms: IСoncreteFilm[]) => (dispatch: AppDispatch) => {
       const genres = Array.from(
         new Set(ratedFilms.map((film) => film.Genre.split(", ")).flat())
-      );
+      ).sort();
 
       dispatch(filmActionCreators.setGenres(genres));
     },

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { useClasses } from "../styles/classes";
 import { Grid } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,20 +9,13 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { styles } from "../styles/mySelectSx";
 
 interface MySelectProps {
+  genre: string;
   genres: string[];
-  handleSelectChange: (page: string) => void;
+  handleSelectChange: (e: SelectChangeEvent<string>) => void;
 }
 
-const MySelect: FC<MySelectProps> = ({ genres, handleSelectChange }) => {
-  const [genre, setGenre] = useState("");
-
+const MySelect: FC<MySelectProps> = ({ genre, genres, handleSelectChange }) => {
   const classes = useClasses();
-
-  const handleChange = (e: SelectChangeEvent<string>) => {
-    setGenre(e.target.value);
-
-    handleSelectChange(e.target.value);
-  };
 
   return (
     <Grid className={classes.wrapper} container justifyContent="center">
@@ -32,7 +25,7 @@ const MySelect: FC<MySelectProps> = ({ genres, handleSelectChange }) => {
           <Select
             labelId="genre-label"
             label="Genre"
-            onChange={handleChange}
+            onChange={handleSelectChange}
             value={genre}
           >
             <MenuItem value="">

@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { useTypedSelector } from "../hooks/useTyped";
 import { useActions } from "../hooks/useAction";
 import FilmService from "../services/film";
 import { IСoncreteFilm } from "../models/film";
 import MySelect from "../components/MySelect";
 import FilmList from "../components/FilmList";
+import { SelectChangeEvent } from "@mui/material";
 
 const Rated: FC = () => {
   const { ratedFilms, genres, lastRatedFilm, films, film, loader } =
@@ -15,48 +16,57 @@ const Rated: FC = () => {
 
   const memorizedFilms = useRef(ratedFilms);
 
-  const updatedMemorizedFilms = useRef<IСoncreteFilm[]>([]);
+  const [genre1, setGenre] = useState("");
 
   useEffect(() => {
     if (lastRatedFilm) {
+      let newFilms;
+
+      // if rating is null, then delete rated film and set right current genres
       if (!lastRatedFilm.rating) {
-        updatedMemorizedFilms.current = memorizedFilms.current.filter(
+        newFilms = memorizedFilms.current.filter(
           (f) => f.imdbID !== lastRatedFilm.imdbID
         );
 
-        return;
+        setCurrentGenres(newFilms);
+
+        if (ratedFilms.length === 0) {
+          setGenre("");
+        }
+      } else {
+        newFilms = memorizedFilms.current.map((f) => {
+          if (f.imdbID === lastRatedFilm.imdbID) {
+            return lastRatedFilm;
+          } else {
+            return f;
+          }
+        });
       }
 
-      updatedMemorizedFilms.current = memorizedFilms.current.map((f) => {
-        if (f.imdbID === lastRatedFilm.imdbID) {
-          return lastRatedFilm;
-        } else {
-          return f;
-        }
-      });
-
-      return;
+      memorizedFilms.current = newFilms;
     }
-
-    updatedMemorizedFilms.current = memorizedFilms.current;
+    /* eslint-disable */
   }, [lastRatedFilm]);
 
   useEffect(() => {
     setLastRatedFilm({} as IСoncreteFilm);
-    setCurrentGenres(ratedFilms);
+    setCurrentGenres(memorizedFilms.current);
 
     return () => {
-      setRatedFilms(updatedMemorizedFilms.current);
-      setFilms(FilmService.syncFilms(films, updatedMemorizedFilms.current));
+      setRatedFilms(memorizedFilms.current);
+      setFilms(FilmService.syncFilms(films, memorizedFilms.current));
       setLastRatedFilm({} as IСoncreteFilm);
     };
-    /* eslint-disable */
   }, []);
 
-  const handleSelectChange = (genre: string) => {
-    if (genre) {
-      const newFilmsArr = updatedMemorizedFilms.current.filter((film) => {
-        if (film.Genre.split(", ").includes(genre)) {
+  const handleSelectChange = (e: SelectChangeEvent<string>) => {
+    const currentGenre = e.target.value;
+
+    setGenre(currentGenre);
+
+    if (currentGenre) {
+      const newFilmsArr = memorizedFilms.current.filter((film) => {
+        if (film.Genre.split(", ").includes(currentGenre)) {
           return film;
         }
       });
@@ -64,13 +74,22 @@ const Rated: FC = () => {
       return setRatedFilms(newFilmsArr);
     }
 
-    return setRatedFilms(updatedMemorizedFilms.current);
+    return setRatedFilms(memorizedFilms.current);
   };
 
   return (
     <>
-      <MySelect genres={genres} handleSelectChange={handleSelectChange} />
-      <FilmList films={ratedFilms} film={film} loader={loader} />
+      <MySelect
+        genre={genre1}
+        genres={genres}
+        handleSelectChange={handleSelectChange}
+      />
+      <FilmList
+        films={ratedFilms}
+        film={film}
+        loader={loader}
+        sx={{ paddingBottom: "30px !important" }}
+      />
     </>
   );
 };
